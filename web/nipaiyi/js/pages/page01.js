@@ -6,7 +6,12 @@ var url=window.location.href; //url
 var ip=returnCitySN["cip"];//ip
 var userAgent=navigator.userAgent;//代理信息
 var sign=getRequestByName("sign");
-
+var device=0;
+if(/Android|iPhone|BlackBerry/i.test(navigator.userAgent)) {
+    device=1;
+}else{
+    device=0;
+}
 
 //打印基本信息
 /*console.log(company)
@@ -16,7 +21,6 @@ console.log(ip)
 console.log(userAgent);
 console.log(sign)*/
 $(function () {
-   // console.log("用户留资02")
     //保存页面初始化信息
     $.ajax({
         type:'POST',
@@ -33,7 +37,7 @@ $(function () {
         },
         dataType: 'json',
         success: function(data){
-            console.log(data);
+            // console.log(data);
         },
         error: function(error){
             console.log(error);
@@ -44,8 +48,7 @@ $(function () {
         var second=0
         var timer=window.setInterval(function () {
             second++
-            if (second <= 90){
-                console.log(second)
+            if (second <= 3){
                  $.ajax({
                      type:'POST',
                      url:'http://mm.jnrise.cn/loading/server/stay',
@@ -62,7 +65,7 @@ $(function () {
                      },
                      dataType:'json',
                      success:function (data) {
-                         console.log(data)
+                         // console.log(data)
                      },
                      error:function (error) {
                          console.log(error)
@@ -70,7 +73,6 @@ $(function () {
                  })
             }else{
                 window.clearInterval(timer)
-                // console.log("stop!")
             }
 
         },1000)
@@ -78,63 +80,60 @@ $(function () {
     getTime();
 
 })
-function getInfo() {
+function getInfo(element) {
+    var clickType=element.id
     var Phone=$("#patriarchPhone").val()
     var Name=$("#childrenName").val()
-    // console.log(Phone)
-    // console.log(Name)
+    var myreg= /^1[3|4|5|7|8][0-9]{9}$/;
 
     if(Phone  == '' && Name == ''){
         $("#verificat01").css("display","block")
         $("#verificat02").css("display","block")
+        $("#verificat03").css("display","none")
     }else if(Phone  == ''){
         $("#verificat01").css("display","block")
         $("#verificat02").css("display","none")
+        $("#verificat03").css("display","none")
+    }else if(!myreg.test(Phone)) {
+        $("#verificat03").css("display","block")
     }else if (Name == '') {
         $("#verificat01").css("display","none")
         $("#verificat02").css("display","block")
-    }else{
+    }else {
         $("#verificat01").css("display","none")
         $("#verificat02").css("display","none")
         $("#verificat03").css("display","none")
-     /*   console.log("用户页面留存信息")
-        console.log(company)
-        console.log(userId)
-        console.log(Phone)
-        console.log(Name)
-        console.log(sign)*/
-        $.ajax({
-            type:'POST',
-            url: 'http://mm.jnrise.cn/loading/server/info',
-            headers:{"Content-Type":"application/x-www-form-urlencoded"},
-            data:{
-                'company':company,
-                'userId':userId,
-                'phone':Phone,
-                'name':Name,
-                'age':0,
-                'gender':0,
-                'school':'',
-                'sign':sign
-            },
-            dataType: 'json',
-            success: function(data){
-                //console.log(data);
-                $('#dialog').css('display',"block")
-                setTimeout(function () {
-                    $('#dialog').css('display',"none")
-                },2000)
-                console.log(data)
-            },
-            error: function(error){
-                $('#dialog01').css('display',"block")
-                setTimeout(function () {
-                $('#dialog01').css('display',"none")
-            },2000)
-            console.log(error)
-            }
-        });
+        submitForm(clickType,Phone,Name);
     }
+
+}
+function getInfo01(element) {
+    debugger
+
+    var clickType=element.id
+    var Phone=$("#phone").val()
+    var Name=$("#name").val()
+    var myreg= /^1[3|4|5|7|8][0-9]{9}$/;
+
+   if(Phone ==  ''  && Name == ''){
+        $("#inputPhone").css("display","block")
+        $("#inputName").css("display","block")
+        $("#err-info").css("display","none")
+    }else if(Phone == '') {
+       $("#inputPhone").css("display","block")
+       $("#inputName").css("display","none")
+       $("#err-info").css("display","none")
+    }else if(!myreg.test(Phone)) {
+       $("#err-info").css("display","block")
+   }else  if(Name == ''){
+       $("#inputPhone").css("display","none")
+       $("#inputName").css("display","block")
+   }else{
+       $("#inputPhone").css("display","none")
+       $("#inputName").css("display","none")
+       $("#err-info").css("display","none")
+       submitForm(clickType,Phone,Name);
+   }
 
 }
 //随机生成10位用户id
@@ -162,6 +161,81 @@ function getRequestByName(name) {
         }
     }
     return result;
+}
+function submitForm(clickType,Phone,Name) {
+      $.ajax({
+            type:'POST',
+            url: 'http://mm.jnrise.cn/loading/server/info',
+            headers:{"Content-Type":"application/x-www-form-urlencoded"},
+            data:{
+                'company':company,
+                'userId':userId,
+                'phone':Phone,
+                'name':Name,
+                'age':0,
+                'gender':0,
+                'school':'',
+                'sign':sign
+            },
+            dataType: 'json',
+            success: function(data){
+                // console.log(data);
+                if(clickType == 'btn01'){
+                $('#dialog02').css('display',"block")
+                setTimeout(function () {
+                    $('#dialog02').css('display',"none")
+                },2000)
+               }else if(clickType == 'btn02'){
+                $('#dialog').css('display',"block")
+                setTimeout(function () {
+                    $('#dialog').css('display',"none")
+                },2000)
+                }
+
+                },
+            error: function(error){
+                if(clickType == 'btn01'){
+                $('#dialog03').css('display',"block")
+                setTimeout(function () {
+                    $('#dialog03').css('display',"none")
+                },2000)
+            }else if(clickType == 'btn02'){
+                $('#dialog01').css('display',"block")
+                setTimeout(function () {
+                    $('#dialog01').css('display',"none")
+                },2000)
+            }
+            console.log(error)
+            }
+        });
+
+
+    $.ajax({
+        type:'POST',
+        url: 'http://mm.jnrise.cn/loading/server/click',
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        data:{
+             'sign':sign,
+             'uuid':userId,
+             'deviceType':device,
+             'clickType':3,
+             'company':company,
+             'url':url,
+             'ip':ip,
+             'userAgent':userAgent,
+             'userId':userId,
+             'otherInfo':clickType
+
+        },
+        dataType: 'json',
+        success: function(data){
+            // console.log(data)
+        },
+        error: function(error){
+            console.log(error)
+        }
+
+    })
 }
 
 

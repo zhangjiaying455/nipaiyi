@@ -21,17 +21,16 @@ body,html{
     height: 100%;
 }
 .content05{
-    height: 10.64rem;
+    height:9rem;
     background: url("../../images/bg.png") no-repeat;
     background-size: 100% 100%;
-    -webkit-background-size: 100% 100%;
     position: relative;
 }
 .form{
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
+    top: -0.4rem;
     bottom: 0;
     width: 9.33rem;
     height: 5.62rem;
@@ -43,9 +42,33 @@ body,html{
     justify-content: center;
     align-items: center;
 }
+.form01{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -0.7rem;
+    bottom: 0;
+    width: 9.33rem;
+    height: 6.62rem;
+    background: #fff;
+    border: 1px solid #4263b0;
+    border-radius: 0.5rem;
+    margin:1.5rem  auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .formInfo{
     width: 9rem;
     height: 5.23rem;
+    border:1px dashed #ee3900;
+    border-radius: 0.5rem;
+    position: relative;
+    text-align: center;
+}
+.formInfo01{
+    width: 9rem;
+    height: 6.23rem;
     border:1px dashed #ee3900;
     border-radius: 0.5rem;
     position: relative;
@@ -102,14 +125,43 @@ input::-webkit-input-placeholder {
 .verificat01{
     color: #f70a0a;
     position: absolute;
-    top: 1.68rem;
+    top: 2.68rem;
     left: 0.6rem;
     display: none;
 }
 .verificat02{
     color: #f70a0a;
     position: absolute;
+    top: 4.05rem;
+    left: 0.6rem;
+    display: none;
+}
+.verificat2{
+    color: #f70a0a;
+    position: absolute;
+    top: 1.68rem;
+    left: 0.6rem;
+    display: none;
+}
+.verificat3{
+    color: #f70a0a;
+    position: absolute;
     top: 3.05rem;
     left: 0.6rem;
     display: none;
+}
+.titleName{
+    font-size: 0.48rem;
+    color: #ec5f10;
+    font-weight: bolder;
+    margin-top: 0.5rem;
+}
+#inputPhone{
+    margin-top: 1.1rem;
+}
+#inputName{
+    margin-top: 1.1rem;
+}
+#err-info{
+    margin-top: 1.1rem;
 }
