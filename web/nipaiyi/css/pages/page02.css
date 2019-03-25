@@ -125,30 +125,30 @@ input::-webkit-input-placeholder {
 .verificat01{
     color: #f70a0a;
     position: absolute;
-    top: 2.68rem;
+    top: 1.6rem;
     left: 0.6rem;
-    display: none;
+    /*display: none;*/
 }
 .verificat02{
     color: #f70a0a;
     position: absolute;
-    top: 4.05rem;
+    top: 3rem;
     left: 0.6rem;
-    display: none;
+    /*display: none;*/
 }
 .verificat2{
     color: #f70a0a;
     position: absolute;
-    top: 1.68rem;
+    top: 2.68rem;
     left: 0.6rem;
-    display: none;
+   /* display: none;*/
 }
 .verificat3{
     color: #f70a0a;
     position: absolute;
-    top: 3.05rem;
+    top: 4.05rem;
     left: 0.6rem;
-    display: none;
+    /*display: none;*/
 }
 .titleName{
     font-size: 0.48rem;
