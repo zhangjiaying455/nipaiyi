@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <title>在线少儿数理思维-让孩子爱上数学</title>
+    <script src="css/flexible-css.min.js"></script>
+    <script src="js/flexible.min.js"></script>
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/page01.css">
+</head>
+<body>
+   <div class="main">
+       <div class="content01">
+           <img src="images/page01/page01.jpg">
+       </div>
+       <div class="content01">
+           <img src="images/page01/page02.jpg">
+       </div>
+       <div class="content01">
+           <img src="images/page01/page03.jpg">
+       </div>
+       <div class="content01">
+           <img src="images/page01/page04.jpg">
+       </div>
+       <div class="content05">
+          <div class="form">
+            <div class="formInfo">
+                <input id="patriarchPhone" class="text-common common01" type="number" placeholder="家长电话"/>
+                <span id="verificat01" class="verificat01">请输入家长电话</span>
+                <span id="verificat03" class="verificat01">手机号输入不正确</span>
+                <input id="childrenName" class="text-common common02" type="text" placeholder="宝宝姓名"/>
+                <span id="verificat02" class="verificat02">请输入宝宝姓名</span>
+                <button type="button" class="txt-button" onclick="getInfo()">免费领取试听课</button>
+            </div>
+          </div>
+           <div id="dialog" class="dialog">领取成功！</div>
+           <div id="dialog01" class="dialog">领取失败！</div>
+       </div>
+   </div>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/pages/page01.js"></script>
+<script  type="text/javascript">
+
+    $('#patriarchPhone').bind('change',function () {
+        //获取家长电话和孩子姓名信息
+        var Phone=$("#patriarchPhone").val()
+        var myreg=/^1[3|4|5|8][0-9]\d{4,8}$/;
+        console.log(Phone)
+        $("#verificat01").css("display","none")
+        if (!myreg.test(Phone)){
+           $("#verificat03").css("display","block")
+        }else{
+           $("#verificat03").css("display","none")
+        }
+    })
+    $('#childrenName').bind('change',function () {
+        $("#verificat02").css("display","none")
+    })
+
+</script>
+</body>
+</html>
